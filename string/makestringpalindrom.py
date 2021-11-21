@@ -79,11 +79,11 @@ class Solution:
     def reverseWords(self,S,chr):
         ip=S
         a=ip.split(chr)
-        print(a)
+        # print(a)
         newstr=''
         for i in range(0,len(a)):
             newstr=newstr+str(a[len(a)-1-i])+chr
-        print(newstr)
+        return(newstr)
 def main():
     print("Hello World!")
     test=Solution()
