@@ -137,7 +137,7 @@ class Solution:
         return result
     
     def findmaxnumberinstring(self,inputstring):
-        
+        pass
 # Given a sequence, find the length of the longest palindromic subsequence in it & print longest palindromic subsequence
 # Given string find maxim numeric value from given string i.e. kl985swr75 -> 985
 # Reverse string without reversing words for e.x. i.like.this->this.like.i

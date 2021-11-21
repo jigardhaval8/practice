@@ -19,36 +19,78 @@ g g
 
 class Solution:
     def MakeStringPalindrom(self,ipstring):
-        ip = ipstring
-        ip_len = len(ip)
-        mid = round(ip_len/2) 
+        ip=ipstring
+        ip_len=len(ipstring)
+        first=0
+        last=ip_len-1
         discard_counter=0
-        match_flag = 0
-        match_flag_i=0
-        match_flag_j=0
-        for i in range(ip_len-1,mid-1,-1):
-            for j in range(0,ip_len):
-                print("-" + str(ip[i])  + "-" + str(ip[j]))
-                if(ip[i]==ip[j]):
-                    match_flag=1
-                    match_flag_i=i
-                    match_flag_j=j
-                    break
-            if((match_flag==0)):
-                discard_counter = discard_counter + 1
-                print("Discarded : " + str(ip[i]) + "at index " + str(i) )
+        while(first<last):
+            if(ip[first]==ip[last]):
+                first=first+1
+                last=last-1
             else:
-                if((match_flag_i==match_flag_j)):
-                    discard_counter = discard_counter + 1
-                    print("Discarded : " + str(ip[i]) + "at index " + str(i) )
+                if(ip[(first+1)]==ip[last]):
+                    discard_counter=discard_counter+1
+                    # print('Discard @' + str(ip[first]) + " At index " +  str(first))
+                    # print(" Comaring " + str(first+1) + " & " + str(last))
+                    first=first+2
+                    last=last-1
                 else:
-                    pass
+                    if(ip[(first)]==ip[(last-1)]):
+                        discard_counter=discard_counter+1
+                        # print('Discard #' + str(ip[last]))
+                        first=first+1
+                        last=last-2
+                    else:
+                        discard_counter=discard_counter+2
+                        # print('Discard $' + str(ip[first]))
+                        # print('Discard %' + str(ip[last]))
+                        first=first+1
+                        last=last-1                        
         return discard_counter
-                    
+
+    def isPossible(self, S):
+        ip = S
+        uniquechar=[]
+        uniquechar_cnt=[]
+        odd_numerelementinlist=0
+        ip_list=list(ip)
+        ip_list.sort()
+        # print(ip_list)
+        for i in ip_list:
+            if i not in uniquechar:
+                uniquechar.append(i)
+        # print(uniquechar)
+        for i in uniquechar:
+            tmp_cnt=0
+            for j in range(0,len(ip_list)):
+                if(ip_list[j]==i):
+                    tmp_cnt=tmp_cnt+1
+            uniquechar_cnt.append(tmp_cnt)
+        # print(uniquechar_cnt)
+        for i in uniquechar_cnt:
+            if(i%2!=0):
+                odd_numerelementinlist=odd_numerelementinlist+1
+        if(odd_numerelementinlist>1):
+            return('No')
+        else:
+            return('Yes')
+    #Function to reverse words in a given string.
+    def reverseWords(self,S,chr):
+        ip=S
+        a=ip.split(chr)
+        print(a)
+        newstr=''
+        for i in range(0,len(a)):
+            newstr=newstr+str(a[len(a)-1-i])+chr
+        print(newstr)
 def main():
     print("Hello World!")
     test=Solution()
     print(test.MakeStringPalindrom('aebcbda'))
+    print(test.MakeStringPalindrom('geeksforgeeks'))
+    print(test.isPossible('geeksforgeeks'))
+    print(test.reverseWords('i.like.this.program.very.much','.'))
 
 if __name__ == "__main__":
     main()
