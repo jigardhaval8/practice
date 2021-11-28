@@ -117,6 +117,41 @@ class Solution:
         oddpos = (n&oddmask)>>1
         result=evenpos|oddpos
         return(result)
+    def checkvalueinint2(self, number,startbit, endbit):
+        mask=0
+        result=0
+        for i in range(startbit,endbit+1):
+            mask=mask|(0x1<<i)
+        print(bin(mask))
+        result = (number & mask)>>startbit
+        print(result)
+
+    def programvalueinint2(self,number,startbit,endbit,val):
+        mask=0
+        for i in range(startbit,endbit+1):
+            mask=mask|(0x1<<i)
+        mask=~mask
+        print(bin(mask))
+        newval=number&mask
+        result=newval|(val<<startbit)
+        print(result)
+
+    # ACT TACK
+    def f(self,str1,str2):
+        str1ln=len(str1)
+        str2ln=len(str2)
+        count=0
+        if(str1ln>str2ln):
+            return False
+        str1list=list(str1)
+        str2list=list(str2)
+        for i in str1list:
+            if i in str2list:
+                count = count + 1
+        if(count==str1ln):
+            return True
+        else:
+            return False
 
 def main():
     test = Solution()
@@ -156,7 +191,7 @@ def main():
     print("\n| Program value " + str(wrvalue) + " between bit [" + str(endbit)  + ":" + str(startbit) + "] in number " + str(number))
     print(test.programvalueinint(number,startbit, endbit,wrvalue))
     # ---- Flip Bits
-    number=8
+    number=12
     bitpos=2
     print("\n| Flip bit " + str(bitpos) + " in number " + str(number))
     print(test.flipKthBit(number,bitpos))
@@ -170,5 +205,23 @@ def main():
     number1=23
     print("\n| Swapping even and odd bits of Number " + str(number1))
     print(test.swapBits(number1))
+
+
+    number=15
+    startbit=1
+    endbit=3
+    print("\n| Checking value between bit [" + str(endbit)  + ":" + str(startbit) + "] in number " + str(number))
+    print(test.checkvalueinint2(number,startbit, endbit))
+
+    number=15
+    startbit=1
+    endbit=3
+    value=3
+    print("\n| Program value " + str(value) + " between bit [" + str(endbit)  + ":" + str(startbit) + "] in number " + str(number))
+    print(test.programvalueinint2(number,startbit, endbit,value))
+
+    str1="ACTT"
+    str2="ACTEW"
+    print(test.f(str1,str2))
 if __name__ == "__main__":
     main()

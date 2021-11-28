@@ -95,5 +95,6 @@ printf("\n Sum Elements in Array is: %d",sum);
 reversearray(a,n);
 printarray(a,n);
 printf("\n >---end---< \n");
+
 return 0;    
 }
